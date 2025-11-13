@@ -327,10 +327,15 @@ export default {
               required: true,
               example: "9800768098"
             },
+            password: {
+              type: "string",
+              required: true,
+              example: "dinesh84%"
+            },
             roleId: {
               type: "string",
               required: true,
-              example: "47e96982-b900-4db3-a956-210580358576"
+              example: "0cd1035f-ae65-4865-b0f7-729c7dcb8229      "
             }
           }
         },

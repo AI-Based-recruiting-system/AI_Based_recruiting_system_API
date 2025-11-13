@@ -2,6 +2,7 @@ export interface IAuthSignupPayload {
   firstName: string;
   lastName: string;
   username: string;
+  password:string;
   phone: string;
   email: string;
   roleId: string;

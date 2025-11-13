@@ -6,6 +6,7 @@ export const signupValidation = (data: IAuthSignupPayload): Joi.ValidationResult
     firstName: Joi.string().trim().required(),
     lastName: Joi.string().trim().required(),
     username: Joi.string().trim().required(),
+    password: Joi.string().trim().required(),
     phone: Joi.string().trim().required(),
     email: Joi.string().lowercase().email().trim().required(),
     roleId: Joi.string().required(),    

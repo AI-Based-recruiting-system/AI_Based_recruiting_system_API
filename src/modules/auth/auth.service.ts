@@ -12,10 +12,11 @@ class AuthService {
     const { error, value } = signupValidation(reqBody);    
     if (error) throw new BadRequestError(error.details[0].message);
     let userExits = await this.findUserByUnique({ email: value.email });
+    const password = value.password
+    const hashedPassword = await new  BcryptHelper().generateHashPassword(password)
     if (userExits) throw new ConflictRequestError(AUTH_MESSAGE_CONSTANT.EMAIL_ALREADY_TAKEN);
-    // const sanitizeUser = sanitizeFields<IAuthSignupPayload>(value, ["confirmPassword"]);
     const user = await Users.create({
-      data: { ...value, status: 'INACTIVE' },
+      data: { ...value, status: 'ACTIVE', password:hashedPassword },
       select: {
         id: true,
         firstName: true,
@@ -29,23 +30,25 @@ class AuthService {
       }
     });
     if (!user) throw new BadRequestError(AUTH_MESSAGE_CONSTANT.UNABLE_TO_CREATE_USER);
+
+    try {
     const template = await compileEmailTemplate({
       fileName: 'createPassword.mjml',
       data: {
         username: user.username,
         url: `http://localhost:3000/auth/set-password/${user.id}`,
         logo: `https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/CMS_logo.JPG/1200px-CMS_logo.JPG?20090430095015`,
-        facebook: 'emailTemplate?.facebook' ?? '',
-        instagram: 'emailTemplate?.facebook' ?? '',
-        twitter: 'emailTemplate?.facebook' ?? '',
-        linkedIn: 'emailTemplate?.facebook' ?? '',
-        mapUrl: 'emailTemplate?.facebook' ?? '',
-        senderName: 'emailTemplate?.facebook' ?? 'Amnil Technologies',
-        supportMail: 'emailTemplate?.facebook' ?? '',
-        address: 'emailTemplate?.facebook' ?? '',
-        privacyPolicyUrl: 'emailTemplate?.facebook' ?? '',
-        termsAndConditionsUrl: 'emailTemplate?.facebook' ?? '',
-        contactUsUrl: 'emailTemplate?.facebook' ?? '',
+        facebook: 'emailTemplate?.facebook',
+        instagram: 'emailTemplate?.facebook' ,
+        twitter: 'emailTemplate?.facebook' ,
+        linkedIn: 'emailTemplate?.facebook' ,
+        mapUrl: 'emailTemplate?.facebook',
+        senderName: 'emailTemplate?.facebook',
+        supportMail: 'emailTemplate?.facebook',
+        address: 'emailTemplate?.facebook' ,
+        privacyPolicyUrl: 'emailTemplate?.facebook',
+        termsAndConditionsUrl: 'emailTemplate?.facebook',
+        contactUsUrl: 'emailTemplate?.facebook' ,
       },
     });
     const mailOptions = {
@@ -55,9 +58,12 @@ class AuthService {
       html : template
     };
     await transporter.sendMail(mailOptions);
+  }catch(error:any){
+ console.error("❌ Email template or sendMail error:", error);
+  }
     return user;
   }
-   async findUserByUnique(query: { [key: string]: string }): Promise<any | null> {
+   async findUserByUnique(query: any): Promise<any | null> {
     return Users.findUnique({ where: query });
   }
   async login(reqBody:any):Promise<any>{

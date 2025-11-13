@@ -17,6 +17,7 @@ class RoleService {
         }
         return role;
       } catch (error) {
+        console.log(error,'error')
         if (error instanceof BadRequestError) {
           throw error;
         } else {

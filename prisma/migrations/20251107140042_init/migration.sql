@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "userStatus" AS ENUM ('INACTIVE', 'ACTIVE', 'DELETED', 'BLOCKED');
+
+-- CreateEnum
 CREATE TYPE "roleType" AS ENUM ('USER', 'ADMIN', 'STAFF');
 
 -- CreateEnum
@@ -11,10 +14,10 @@ CREATE TABLE "Users" (
     "lastName" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
-    "status" BOOLEAN NOT NULL DEFAULT false,
     "roleId" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT,
+    "status" "userStatus" NOT NULL,
     "avatar" TEXT,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
