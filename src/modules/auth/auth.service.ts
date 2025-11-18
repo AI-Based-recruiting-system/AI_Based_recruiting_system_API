@@ -15,6 +15,7 @@ class AuthService {
     const password = value.password
     const hashedPassword = await new  BcryptHelper().generateHashPassword(password)
     if (userExits) throw new ConflictRequestError(AUTH_MESSAGE_CONSTANT.EMAIL_ALREADY_TAKEN);
+    console.log(value, "auth val")
     const user = await Users.create({
       data: { ...value, status: 'ACTIVE', password:hashedPassword },
       select: {

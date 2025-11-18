@@ -20,4 +20,12 @@ export const USER_MESSAGE_CONSTANT = {
   USER_STATUS_UPDATED_SUCCESSFULLY:"User updated successfully"
 }
 
+export const JOB_MESSAGE_CONSTANT = {
+  JOB_POST_CREATED_SUCCESSFULLY:"Job Post Created Successfully",
+  JOB_LIST_FETCHED_SUCCESSFULLY:"All job_list Fetched Successfully",
+  JOB_FETCHED_SUCCESSFULLY:"Job Post Fetched Successfully",
+  JOB_DELETED_SUCCESSFULLY:"job Post deleted successfully",
+  JOB_UPDATED_SUCCESSFULLY:"Job Post updated successfully",
+  JOB_STATUS_UPDATED_SUCCESSFULLY:"Job Post updated successfully"
+}
 

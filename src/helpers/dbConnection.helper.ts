@@ -10,4 +10,4 @@ const prisma = new PrismaClient({
 });
 
 export { prisma };
-export const { users: Users, menu: Menu, role: Role } = prisma;
+export const { users: Users, job: Job, role: Role } = prisma;
