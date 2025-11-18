@@ -1,8 +1,8 @@
 import { env } from "src/configs";
 import authApi from "src/modules/auth/api.definitions";
-import menuApi from "src/modules/menu/api.definitions";
 import roleApi from "src/modules/role/api.definitions";
 import userApi from "src/modules/user/api.definitions";
+import jobApi from 'src/modules/job/api.definitions';
 
 export default {
   server: {
@@ -20,13 +20,13 @@ export default {
     ],
     tags: [
       ...authApi.server.tags,
-      ...menuApi.server.tags,
+      ...jobApi.server.tags,
       ...roleApi.server.tags,
       ...userApi.server.tags,
     ],
     paths: {
       ...authApi.server.paths,
-      ...menuApi.server.paths,
+      ...jobApi.server.paths,
       ...roleApi.server.paths,
       ...userApi.server.paths,
     },
@@ -40,7 +40,7 @@ export default {
           }
         },
         ...authApi.server.components.schemas,
-        ...menuApi.server.components.schemas,
+        ...jobApi.server.components.schemas,
         ...roleApi.server.components.schemas,
         ...userApi.server.components.schemas,
       },
