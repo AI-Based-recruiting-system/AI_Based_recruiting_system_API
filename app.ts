@@ -21,7 +21,7 @@ class App {
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.set("rateLimit", 100);
-
+                                                                                                                                                                                                                                    
     this.app.use(helmet());
     this.app.use("/public", express.static(path.join(__dirname, "public")));
 

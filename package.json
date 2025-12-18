@@ -59,6 +59,7 @@
     "morgan": "^1.10.0",
     "multer": "^2.0.2",
     "nodemailer": "^6.9.13",
+    "openai": "^6.10.0",
     "prisma": "^6.19.0",
     "swagger-ui-express": "^4.6.3",
     "uuid": "^13.0.0"

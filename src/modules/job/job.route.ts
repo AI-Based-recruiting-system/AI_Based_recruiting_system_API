@@ -7,4 +7,5 @@ import { upload } from "src/helpers/uploadImg";
 router.route("/").get(jobController.getAllJob);
 router.use(jwtTokenMiddleware)
 router.route("/create").post( upload, jobController.create);
+router.route("/application").post(upload, jobController.application)
 export default router; 

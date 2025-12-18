@@ -8,6 +8,7 @@ import { catchAsyncHandler } from "src/helpers";
 export class userController {
   async getAllUser(req: Request, res: Response, next: NextFunction): Promise<Response> {
     const users = await userService.getAllUser();
+    console.log(users,  'usersss')
     return new SuccessResponse<IAuthSignup>
     (USER_MESSAGE_CONSTANT.ALL_USER_FETCHED_SUCCESSFULLY, users)
     .sendResponse(res);

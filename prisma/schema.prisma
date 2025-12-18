@@ -96,7 +96,7 @@ model Application {
   userId    String    @db.Uuid
 
   job       Job       @relation(fields: [jobId], references: [id])
-  jobId     String    @db.Uuid
+  jobId     String      @db.Uuid
 
   appliedAt DateTime  @default(now())
   status    ApplicationStatus @default(PENDING)

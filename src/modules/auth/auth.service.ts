@@ -30,9 +30,10 @@ class AuthService {
         updatedAt: true
       }
     });
-    if (!user) throw new BadRequestError(AUTH_MESSAGE_CONSTANT.UNABLE_TO_CREATE_USER);
+    console.log(user,"user")
 
     try {
+  // if (!user) throw new BadRequestError(AUTH_MESSAGE_CONSTANT.UNABLE_TO_CREATE_USER);
     const template = await compileEmailTemplate({
       fileName: 'createPassword.mjml',
       data: {
@@ -131,6 +132,7 @@ class AuthService {
       await transporter.sendMail(mailOptions);
       return token;
     } catch (error) {
+      console.log(error, "ths is error")
       throw new BadRequestError('Server error');
     }
   }

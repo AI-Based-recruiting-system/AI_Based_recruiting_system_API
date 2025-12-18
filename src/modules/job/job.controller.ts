@@ -13,6 +13,13 @@ export class jobController {
 
     return new SuccessCreatedResponse<IAuthSignup>(JOB_MESSAGE_CONSTANT.JOB_POST_CREATED_SUCCESSFULLY, job).sendResponse(res);
   }
+  async application(req: Request, res: Response, next: NextFunction): Promise<Response> {
+    const fileName = req.file?.filename
+    const {jobId, userId} = req.params
+    const job = await jobService.apply(req.body, fileName, jobId, userId);
+
+    return new SuccessCreatedResponse<IAuthSignup>(JOB_MESSAGE_CONSTANT.JOB_POST_CREATED_SUCCESSFULLY, job).sendResponse(res);
+  }
   async getAllJobPost(req: Request, res: Response, next: NextFunction): Promise<Response> {
     const page = Math.max(1, Number(req.query.page) || 1);
     const limit = Math.min(100, Number(req.query.limit) || 20);
@@ -23,5 +30,6 @@ export class jobController {
 
 export default {
   create: catchAsyncHandler(new jobController().create),
-  getAllJob: catchAsyncHandler(new jobController().getAllJobPost)
+  getAllJob: catchAsyncHandler(new jobController().getAllJobPost),
+  application: catchAsyncHandler(new jobController().application)
 };

@@ -399,12 +399,12 @@ export default {
             email: {
               type: "string",
               required: true,
-              example: "krimson@gmail.com"
+              example: "uniqkrimson100@gmail.com"
             },
             password: {
               type: "string",
               required: true,
-              example: "krimson@123456"
+              example: "diensh84%"
             }
           }
         },
@@ -492,7 +492,7 @@ export default {
             token: {
               type: "string",
               required: true,
-              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
             },
             otp: {
               type: "number",
